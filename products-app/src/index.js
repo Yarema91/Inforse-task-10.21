@@ -10,7 +10,6 @@ import { ProdstoreServiceProvider} from './conponents/prodstore-service-context'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 import store from './store';
 
 const prodstoreService = new ProdstoreService();
