@@ -4,17 +4,21 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-function ModalWindow({title, children}) {
+function ModalWindow({title, children, onAddProd}) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+    const onSubmit = () => {
+      onAddProd();
+      setShow(false);
+    };
+  // onDateChainge
+  // onProductDataChainge
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
            {title}
-          
         </Button>
   
         <Modal show={show} onHide={handleClose}>
@@ -28,7 +32,9 @@ function ModalWindow({title, children}) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary"
+            onClick={() => onSubmit()} 
+            >
               Save 
             </Button>
           </Modal.Footer>
@@ -36,7 +42,6 @@ function ModalWindow({title, children}) {
       </>
     );
   }
-  
 //   render(<ModalWindow />);
   export default ModalWindow;
 

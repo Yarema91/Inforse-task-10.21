@@ -5,6 +5,14 @@ const prodsLoaded = (newProds) => {
     }
 };
 
+
+export const deleteProd = (prodId) => {
+    return {
+        type: "DELETE_PROD",
+        payload: prodId
+    }
+};
+
 export {
     prodsLoaded 
 };

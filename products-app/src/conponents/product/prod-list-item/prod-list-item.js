@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import Button from 'react-bootstrap/Button';
 
 
-const prodListItem = ({ prod }) => {
+const prodListItem = ({ prod, onDeleteProd }) => {
     const { id, imageUrl, name, count, size, weight, comments } = prod;
         // "id": 1,
         // "imageUrl": "some url here",
@@ -19,8 +19,11 @@ const prodListItem = ({ prod }) => {
     return (
         <Fragment>
             <span>{ id }</span>
-            <span>{ imageUrl }</span>
-            <Button>del</Button>
+            <span> { name }</span>
+            <span> count: { count }  </span>
+            <Button 
+            onClick={()=> onDeleteProd(id)}
+            >Х</Button>
         </Fragment>
     )
 }

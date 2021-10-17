@@ -1,6 +1,7 @@
 
 const initialState = {
-    prods: [
+    prods: [],
+    cartItem: [
         {
             id: 1,
             imageUrl: "some url here",
@@ -24,16 +25,25 @@ const initialState = {
             },
             weight: "400g",
             comments: ["CommentModel", "CommentModel"]
-        },
+        }
     ]
+    
 };
 
 const reducers = (state = initialState, action) => {
+    // console.log(action.type);
     switch (action.type) {
         case 'PRODS_LOADED':
             return {
                 prods: action.payload
             };
+        case 'DELETE_PROD':
+            const prodId = action.payload;
+            return {
+                ...state, 
+                prods: [...state.prods.filter(prod => prod.id !== prodId)]
+            };
+        
         default:
             return state;
     }
