@@ -5,7 +5,10 @@ import ProdList from "../product/prod-list";
 const HomePage = () => {
     
     return (
-        <ProdList prods />
+        // <div className='container'>
+            <ProdList prods />
+        // </div>
+        
 
     )
 };

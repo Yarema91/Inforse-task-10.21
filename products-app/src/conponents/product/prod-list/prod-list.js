@@ -14,6 +14,7 @@ import SplitButton from 'react-bootstrap/SplitButton';
 import AddProduct from "../add-product";
 
 const ProdList = ({ prods, onDeleteProd }) => {
+    console.log(prods);
     return (
         <ul>
             <ListGroup variant="flush">
@@ -24,7 +25,7 @@ const ProdList = ({ prods, onDeleteProd }) => {
                             variant="outline-secondary"
                             title="Sort"
                             id="segmented-button-dropdown-2"
-                            alignRight
+                            // alignRight
                         >
                             <Dropdown.Item href="#">By name</Dropdown.Item>
                             <Dropdown.Item href="#">By count</Dropdown.Item>
@@ -64,9 +65,9 @@ class ProdListContainer extends Component {
 
     }
     render() {
-        const { prods, onDeleteProd } = this.props;
+        const { prods, onDeleteProd, onAddProd } = this.props;
         return (
-            < ProdList prods={prods} onDeleteProd={onDeleteProd} />
+            < ProdList prods={prods} onDeleteProd={onDeleteProd}  />
         )
     }
 }
@@ -83,9 +84,12 @@ const mapDispatchToProps = (dispatch) => {
                 payload: newProds
             })
         },
-        onDeleteProd: (id) => dispatch(deleteProd(id))
+        onDeleteProd: (id) => dispatch(deleteProd(id)),
+        // onAddProd: (newProd) => dispatch(addNewProd(id))
+        
     }
 };
+
 export default compose(
     withProdstoreService(),
     connect(mapStateToProps, mapDispatchToProps))(ProdListContainer);

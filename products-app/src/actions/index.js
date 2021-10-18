@@ -13,6 +13,14 @@ export const deleteProd = (prodId) => {
     }
 };
 
+
+export const addProdAction = (addNewProd) => {
+    return {
+        type: "ADD_PROD",
+        payload: addNewProd
+    }
+};
+
 export {
     prodsLoaded 
 };

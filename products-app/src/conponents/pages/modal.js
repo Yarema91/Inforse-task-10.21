@@ -2,15 +2,15 @@ import React, { Children, useEffect, useState } from "react";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 
-function ModalWindow({title, children, onAddProd}) {
+function ModalWindow({title, children, onHandleSubmit}) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const onSubmit = () => {
-      onAddProd();
+      onHandleSubmit();
       setShow(false);
     };
   // onDateChainge
@@ -33,7 +33,7 @@ function ModalWindow({title, children, onAddProd}) {
               Close
             </Button>
             <Button variant="primary"
-            onClick={() => onSubmit()} 
+            onClick={onSubmit} 
             >
               Save 
             </Button>
