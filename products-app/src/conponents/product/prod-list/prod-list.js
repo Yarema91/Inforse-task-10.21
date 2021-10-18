@@ -65,7 +65,7 @@ class ProdListContainer extends Component {
 
     }
     render() {
-        const { prods, onDeleteProd, onAddProd } = this.props;
+        const { prods, onDeleteProd } = this.props;
         return (
             < ProdList prods={prods} onDeleteProd={onDeleteProd}  />
         )
@@ -85,7 +85,6 @@ const mapDispatchToProps = (dispatch) => {
             })
         },
         onDeleteProd: (id) => dispatch(deleteProd(id)),
-        // onAddProd: (newProd) => dispatch(addNewProd(id))
         
     }
 };

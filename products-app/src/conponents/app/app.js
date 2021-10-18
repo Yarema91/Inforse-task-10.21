@@ -12,17 +12,15 @@ import {HomePage, CardPage } from "../pages";
 const App = () => {
     // console.log(prodstoreService.getProds());
     return  (
-        <main role="maim">
+        <main role="main">
         <ShopHeader />
         <Switch>
             <Route path="/" 
             component={ HomePage }
             exact />
-             <Route path="/card" 
+             <Route path="/card/:id" 
             component={ CardPage }
             />
-
-            
         </Switch>
         </main>
     )

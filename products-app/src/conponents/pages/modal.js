@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,8 +13,7 @@ function ModalWindow({title, children, onHandleSubmit}) {
       onHandleSubmit();
       setShow(false);
     };
-  // onDateChainge
-  // onProductDataChainge
+
     return (
       <>
         <Button variant="primary" onClick={handleShow}>

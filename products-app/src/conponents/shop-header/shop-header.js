@@ -3,17 +3,17 @@
 // import DropdownMenu from '@restart/ui/esm/DropdownMenu';
 
 import React from 'react';
-import { Link }  from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './shop-header.css';
 
 
-const ShopHeader = ({  }) => {
+const ShopHeader = () => {
   return (
     <header className="shop-header row">
       <Link to="/">
-    <a className="logo text-dark" href="#">Inforse-test</a>
-    </Link>
-  </header>
+        <div className="logo text-dark"  href="#" >Inforse-test</div>
+      </Link>
+    </header>
   );
 };
 

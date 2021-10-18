@@ -28,7 +28,6 @@ const initialState = {
     ]
 };
 
-
 const reducers = (state = initialState, action) => {
     // console.log(action.type);
 
@@ -44,13 +43,14 @@ const reducers = (state = initialState, action) => {
                 prods: [...state.prods.filter(prod => prod.id !== prodId)]
             };
         case 'ADD_PROD':
-            const addNewProd = action.payload;
+            // const addNewProd = action.payload;
             console.log(action.payload);
-            console.log('added ');
-            // console.log('newProduct added');
-            return {...state, addNewProd}  
-            // addNewProd(... state, action.payload);
-
+            // console.log('added ');
+            return {
+                ...state, 
+                prods: [ ...state.prods, action.payload  ]
+            };  
+           
         default:
             return state;
     }

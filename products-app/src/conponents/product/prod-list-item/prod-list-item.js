@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
+import { Link }  from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 
 
+
 const prodListItem = ({ prod, onDeleteProd }) => {
     const { id, imageUrl, name, count, size, weight, comments } = prod;
+
         // "id": 1,
         // "imageUrl": "some url here",
         // "name": "Product name",
@@ -17,10 +20,13 @@ const prodListItem = ({ prod, onDeleteProd }) => {
         // "comments": ["CommentModel", "CommentModel"]
    
     return (
+        
         <Fragment>
+            <Link to={`/card/${id}`}>
             <span>{ id }</span>
             <span> { name }</span>
             <span> count: { count }  </span>
+            </Link>
             <Button 
             onClick={()=> onDeleteProd(id)}
             >Х</Button>

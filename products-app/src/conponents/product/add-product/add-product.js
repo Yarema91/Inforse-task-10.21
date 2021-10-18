@@ -9,32 +9,22 @@ const defaultFormValues = {
     imageUrl: '',
     name: '',
     count: '',
-    size: {
-        width: '',
-        height: ''
-    },
+    width: '',
+    height: '',
     weight: ''
 };
 
 //form function
 const AddProduct = ({ prod, onAdd }) => {
 
-    // const onHandleSubmit = () => {
-    //     console.log('add');
-    //     // console.log('chrecer', productTemplate);
-    // }
-    // // const { imageUrl, name, count, size, weight} = prod;
-
     const [productInput, setProductInput] = useState(defaultFormValues);
 
     //handleChange
     const onChangeHandler = useCallback(
-        ({ target: { name, value } }) => setProductInput(productInput => ({ ...productInput, [name]: value }), [])
+        ({ target: { name, value } }) => setProductInput(productInput => ({ ...productInput, [name]: value }), [] )
     );
 
-    
-
-    //callback form
+    // // callback form
     // const onAdd1 = (e) => {
     //     console.log('onAdd1', onAdd1);
     //     // //validation
@@ -46,7 +36,7 @@ const AddProduct = ({ prod, onAdd }) => {
     //     // if (isValide) {
     //         e.preventDefault()
 
-    //         let newProd = buildNewProd(productInput) // create object
+    //         // let newProd = buildNewProd(productInput) // create object
 
     //         //close modal?
     //         setProductInput({
@@ -64,6 +54,8 @@ const AddProduct = ({ prod, onAdd }) => {
     //     // }
     // }
 
+
+
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             onAdd(e)
@@ -71,7 +63,7 @@ const AddProduct = ({ prod, onAdd }) => {
     }
 
     return (
-        <ModalWindow title='Add product' onHandleSubmit={(e) => onAdd(e, productInput)} >
+        <ModalWindow title='Add product' onHandleSubmit={(e) => onAdd(e, productInput, setProductInput)} >
             <form className="mb-3" action="create-form">
                 <div>
                     <span>Add photo</span>
@@ -80,8 +72,8 @@ const AddProduct = ({ prod, onAdd }) => {
                         type="text"
                         text='name'
                         placeholder='url'
-                        value={productInput.imageUrl}
-                        onChange={e => setProductInput({...productInput, imageUrl: e.target.value })}
+                        value={productInput.imageUrl || "" }
+                        onChange={e => setProductInput({...productInput, imageUrl: e.target.value }) }
                         // onKeyPress={(e) => handleKeyPress(e.target.value)}
                     />
                 </div>
@@ -90,8 +82,8 @@ const AddProduct = ({ prod, onAdd }) => {
                         className='input'
                         type="text" text='name'
                         placeholder='name'
-                    value={productInput.name}
-                    onChange={e => setProductInput({...productInput, name: e.target.value })}
+                    value={productInput.name || ""}
+                    onChange={e => setProductInput({...productInput, name: e.target.value }) }
                     />
                 </div>
                 <div><span>Count</span>
@@ -100,24 +92,27 @@ const AddProduct = ({ prod, onAdd }) => {
                         className='input'
                         text='name'
                         placeholder='count'
-                        value={productInput.count}
-                    onChange={e => setProductInput({...productInput, count: e.target.value })}
+                        value={productInput.count  || ""}
+                    onChange={e => setProductInput({...productInput, count: e.target.value } )}
                     />
                 </div>
-                {/* <div><span>Size</span>
+                <div>
+                    <span>Size</span>
                             <input
                                 type="number"
                                 className='input'
                                 text='name'
                                 placeholder='width' 
-                                value={this.state.inputNewProd}
-                                onChange={e => this.setInputNewProd(e.target.value)}
+                                value={productInput.width || ""}
+                                onChange={e => setProductInput({...productInput, width: e.target.value })}
                             />
                             <input
                                 type="number"
                                 className='input'
                                 text='name'
-                                placeholder='height'   
+                                placeholder='height'  
+                                value={productInput.height || ""}
+                                onChange={e => setProductInput({...productInput, height: e.target.value })} 
                             />
                             </div>
                         <div><span> Weight</span>
@@ -126,31 +121,23 @@ const AddProduct = ({ prod, onAdd }) => {
                             className='input' 
                             text='name' 
                             placeholder='weight'
-                            value={this.state.inputNewProd}
-                            onChange={e => this.setInputNewProd(e.target.value)} 
+                            value={productInput.weight || ""}
+                            onChange={e => setProductInput({...productInput, weight: e.target.value })}
                             />
-                            </div> */}
+                            </div>
             </form>
         </ModalWindow>
     );
 };
 
-
-
-// const mapStateToProps = ({ cartItems }) => {
-//     return {
-//         items: cartItems
-//     }
-// }
 const mapStateToProps = ({ prods }) => {
     return { prods };
 }
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
        
-        onAdd: (e, productInput) => { 
+        onAdd: (e, productInput, setProductInput) => { 
             // e.preventDefault();
             const buildNewProd = ( productInput) => {
                 if (productInput) {
@@ -166,23 +153,15 @@ const mapDispatchToProps = (dispatch) => {
                     }
                     return newProd;
                 }
+                
             }
 
             let newProd = buildNewProd(productInput);// create object
 
+            setProductInput({});
+
             return dispatch(addProdAction(newProd)) },
     }
 };
-// const mapDispatchToProps = ({addNewProd}) => {
-//     return {
-//         // onAdd: (id) => {
-//         //     console.log(`add ${id}`);
-//         // }
-//     onAdd: addProdAction,
-
-//     }
-        
-// }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
